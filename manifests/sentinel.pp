@@ -93,6 +93,9 @@
 # @param sentinel_tls_port
 #   Configure which TLS port to listen on.
 #
+# @param service_ensure
+#   Sets the desired service state.
+#
 # @param service_group
 #   The group of the config file.
 #

@@ -25,7 +25,7 @@ Puppet::Functions.create_function(:'redis::get') do
   end
 
   def get(key, url, default = nil)
-    Redis.new(url: url).get(key) || default
+    Redis.new(url:).get(key) || default
   rescue Redis::CannotConnectError, SocketError => e
     raise Puppet::Error, "connection to redis server failed - #{e}" unless default
 

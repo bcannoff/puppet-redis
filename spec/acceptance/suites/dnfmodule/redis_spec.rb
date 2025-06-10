@@ -2,7 +2,7 @@
 
 require 'spec_helper_acceptance'
 
-describe 'redis', if: %w[centos redhat].include?(os[:family]) && os[:release].to_i == 8 do
+describe 'redis', :if ['CentOS', 'RedHat'].include?(os[:family]) && os[:release].to_i == 8 do
   redis_name = 'redis'
 
   it 'runs successfully' do

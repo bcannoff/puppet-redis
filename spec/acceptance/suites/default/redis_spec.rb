@@ -24,8 +24,8 @@ describe 'redis' do
   specify { expect(service(redis_name)).to be_running }
 
   specify 'redis should respond to ping command' do
-    expect(command('redis-cli ping')).
-      to have_attributes(stdout: %r{PONG})
+    expect(command('redis-cli ping'))
+      .to have_attributes(stdout: %r{PONG})
   end
 
   it 'runs successfully when using Redis apt repository', if: (fact('os.family') == 'Debian') do

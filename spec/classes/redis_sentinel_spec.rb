@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 describe 'redis::sentinel' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
@@ -68,17 +67,17 @@ describe 'redis::sentinel' do
         it { is_expected.to create_class('redis::sentinel') }
 
         it {
-          is_expected.to contain_file(config_file_orig).
-            with_ensure('file').
-            with_mode('0644').
-            with_owner('redis').
-            with_content(expected_content)
+          is_expected.to contain_file(config_file_orig)
+            .with_ensure('file')
+            .with_mode('0644')
+            .with_owner('redis')
+            .with_content(expected_content)
         }
 
         it {
-          is_expected.to contain_service('redis-sentinel').
-            with_ensure('running').
-            with_enable('true')
+          is_expected.to contain_service('redis-sentinel')
+            .with_ensure('running')
+            .with_enable('true')
         }
 
         it { is_expected.to contain_package(sentinel_package_name).with_ensure('installed') }
@@ -92,8 +91,8 @@ describe 'redis::sentinel' do
         end
 
         it {
-          is_expected.to contain_file(config_file_orig).
-            with_content(%r{^user readolny on nopass ~\* resetchannels -@all \+get$})
+          is_expected.to contain_file(config_file_orig)
+            .with_content(%r{^user readolny on nopass ~\* resetchannels -@all \+get$})
         }
       end
 
@@ -246,4 +245,3 @@ describe 'redis::sentinel' do
     end
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

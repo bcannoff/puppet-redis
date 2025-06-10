@@ -18,9 +18,9 @@ describe 'redis-cli task' do
       let(:params) { 'command="ping"' }
 
       it 'execute ping' do
-        is_expected.
-          to match(%r{{\s*"status":\s*"PONG"\s*}}).
-          and match(%r{Ran on 1 target in .+ sec})
+        is_expected
+          .to match(%r{{\s*"status":\s*"PONG"\s*}})
+          .and match(%r{Ran on 1 target in .+ sec})
       end
     end
 
@@ -29,9 +29,9 @@ describe 'redis-cli task' do
         let(:params) { 'command="ping; cat /etc/passwd"' }
 
         it 'stops script injections and escapes' do
-          is_expected.
-            to match(%r!{\s*"status":\s*"ERR unknown command ('|`)ping; cat /etc/passwd('|`)!).
-            and match(%r{Ran on 1 target in .+ sec})
+          is_expected
+            .to match(%r!{\s*"status":\s*"ERR unknown command ('|`)ping; cat /etc/passwd('|`)!)
+            .and match(%r{Ran on 1 target in .+ sec})
         end
       end
 
@@ -39,9 +39,9 @@ describe 'redis-cli task' do
         let(:params) { 'command="ping && cat /etc/passwd"' }
 
         it 'stops script injections and escapes' do
-          is_expected.
-            to match(%r!{\s*"status":\s*"ERR unknown command ('|`)ping && cat /etc/passwd('|`)!).
-            and match(%r{Ran on 1 target in .+ sec})
+          is_expected
+            .to match(%r!{\s*"status":\s*"ERR unknown command ('|`)ping && cat /etc/passwd('|`)!)
+            .and match(%r{Ran on 1 target in .+ sec})
         end
       end
     end

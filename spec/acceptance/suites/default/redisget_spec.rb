@@ -18,13 +18,13 @@ describe 'redis::get() function' do
   end
 
   specify do
-    expect(command('redis-cli SET mykey "Hello"')).
-      to have_attributes(stdout: %r{OK})
+    expect(command('redis-cli SET mykey "Hello"'))
+      .to have_attributes(stdout: %r{OK})
   end
 
   specify do
-    expect(command('redis-cli GET mykey')).
-      to have_attributes(stdout: %r{Hello})
+    expect(command('redis-cli GET mykey'))
+      .to have_attributes(stdout: %r{Hello})
   end
 
   context 'with mykey set to Hello' do
